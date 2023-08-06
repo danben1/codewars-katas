@@ -13,6 +13,37 @@ Also be aware of keys greater than 26 and less than -26. There's only 26 letters
 Examples
 A message 'Caesar Cipher' and a key of 1 returns 'Dbftbs Djqifs'.
 
-A message 'Caesar Cipher' and a key of -1 returns 'Bzdrzq Bhogdq'.*/
+A message 'Caesar Cipher' and a key of -1 returns 'Bzdrzq Bhogdq'.
 
+*/
 
+//CODE
+function encryptor(key, message) {
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    let alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let encryptedMessage = "";
+    for (let i = 0; i < message.length; i++) {
+        if (alphabet.includes(message[i])) {
+            let index = alphabet.indexOf(message[i]);
+            let newIndex = index + key;
+            if (newIndex > 25) {
+                newIndex = newIndex - 26;
+            } else if (newIndex < 0) {
+                newIndex = newIndex + 26;
+            }
+            encryptedMessage += alphabet[newIndex];
+        } else if (alphabetUpper.includes(message[i])) {
+            let index = alphabetUpper.indexOf(message[i]);
+            let newIndex = index + key;
+            if (newIndex > 25) {
+                newIndex = newIndex - 26;
+            } else if (newIndex < 0) {
+                newIndex = newIndex + 26;
+            }
+            encryptedMessage += alphabetUpper[newIndex];
+        } else {
+            encryptedMessage += message[i];
+        }
+    }
+    return encryptedMessage;
+}
